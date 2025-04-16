@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Performance Predictor</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #6dd5ed, #2193b0);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2193b0;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b7b94;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #e6f4ea;
+      border-left: 5px solid #2ecc71;
+      font-size: 18px;
+      color: #2d8640;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Performance Predictor</h2>
+    <form method="POST" action="/predict">
+      <label for="hours_studied">Hours Studied</label>
+      <input type="number" name="hours_studied" id="hours_studied" step="0.1" required>
+
+      <label for="attendance_percentage">Attendance Percentage</label>
+      <input type="number" name="attendance_percentage" id="attendance_percentage" required>
+
+      <label for="sleep_hours">Sleep Hours</label>
+      <input type="number" name="sleep_hours" id="sleep_hours" step="0.1" required>
+
+      <label for="parental_education_level">Parental Education Level</label>
+      <select name="parental_education_level" id="parental_education_level">
+        <option value="HighSchool">High School</option>
+        <option value="Bachelors">Bachelors</option>
+        <option value="Masters">Masters</option>
+        <option value="PhD">PhD</option>
+      </select>
+
+      <label for="extracurricular_participation">Extracurricular Participation</label>
+      <select name="extracurricular_participation" id="extracurricular_participation">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label for="internet_access">Internet Access</label>
+      <select name="internet_access" id="internet_access">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <button type="submit">Predict Performance</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <strong>Predicted Performance:</strong> {{ prediction }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
